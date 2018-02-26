@@ -13,16 +13,16 @@ export const loadCards = () => {
       console.log('CARDS', response)
       return response.json();
     })
-    .then(json => {
-      console.log('JSON', json)
-      return json[0];
-    })
     .then(cards => {
+      console.log('CARDDSSSS', cards)
       dispatch({
         type: LOAD_CARDS,
         cards: cards
       })
-  });
+    })
+      .catch(err => {
+        console.log(err);
+      })
 }
 }
 

@@ -1,4 +1,4 @@
-import { LOAD_CARDS } from '../actions/CardActions';
+import { LOAD_CARDS, ADD_CARD } from '../actions/CardActions';
 
 const initialState = {
   cards: [],
@@ -10,6 +10,7 @@ export default (state = initialState, action) => {
 
       // return [ ...action.cards ];
       return {...state, cards: action.cards};
+
       default:
       return state;
   };
