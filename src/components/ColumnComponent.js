@@ -1,7 +1,7 @@
 import React from 'react';
 import CardListItem from './CardListItem';
 
-export default ({ cards }) => {
+export default ({ cards, handleSubmit }) => {
   return (
     <div className="column-component">
     {
@@ -14,6 +14,7 @@ export default ({ cards }) => {
           status = { card.status }
           created_by = { card.created_by }
           assigned_to = { card.assigned_to }
+          handleSubmit = { handleSubmit }
           // toggleEdit = { toggleEdit.bind(this, card) }
           key = { idx }
           />

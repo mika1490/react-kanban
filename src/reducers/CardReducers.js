@@ -6,11 +6,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    
     case LOAD_CARDS:
-
-      // return [ ...action.cards ];
       return {...state, cards: action.cards};
 
+      case ADD_CARD:
+        return {...state, cards: action.card}
+        
       default:
       return state;
   };

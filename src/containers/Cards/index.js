@@ -8,13 +8,6 @@ class Cards extends Component {
   constructor(props) {
     super(props)
 
-    // this.state = {
-    //   title: '',
-    //   priority: '',
-    //   status: '',
-    //   created_by: '',
-    //   assigned_to: ''
-    // }
 
   }
   componentWillMount() {

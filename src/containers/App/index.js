@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../../index.css';
 import Cards from '../Cards';
+import AddCardForm from '../AddCard';
 
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
       <div className="App">
         KANBAN
         <Cards />
-
+        <AddCardForm />
 
      </div> 
     )
