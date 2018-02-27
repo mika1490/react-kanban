@@ -13,7 +13,10 @@ export default (state = initialState, action) => {
       case ADD_CARD:
         return {...state, cards: action.card}
         
+        
+        
       default:
       return state;
   };
-};
+}
+

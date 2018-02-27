@@ -4,69 +4,84 @@ import { addCard } from '../../actions/CardActions';
 
 class AddCardForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       title : '',
-      priority : '',
-      status : '',
+      priority : 1,
+      status : 1,
       created_by : '',
       assigned_to : ''
-    }
-    this.handleOnChangeTitle = this.handleOnChangeTitle.bind(this);
-    this.handleOnChangePriority = this.handleOnChangePriority.bind(this);
-    this.handleOnChangeStatus = this.handleOnChangeStatus.bind(this);
-    this.handleOnChangeCreatedBy = this.handleOnChangeCreatedBy.bind(this);
-    this.handleOnChangeAssignedTo = this.handleOnChangeAssignedTo.bind(this);
-
+    };
   }
-  handleSubmit(element) {
-    element.preventDefault();
+
+  handleChange(e) {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name] : value
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
     this.props.addCard({
-      title: this.state.title,
-      priority: this.state.priority,
-      status: this.state.status,
-      created_by: this.state.created_by,
-      assigned_to: this.state.assigned_to
-    })
+      title : this.state.title,
+      priority : this.state.priority,
+      status : this.state.status,
+      created_by : this.state.created_by,
+      assigned_to : this.state.assigned_to
+    });
+
     this.setState({
       title : '',
-      priority : '',
-      status : '',
+      priority : 1,
+      status : 1,
       created_by : '',
       assigned_to : ''
-    })
-  }
-  handleOnChangeTitle(event) {
-    this.setState({ title: event.target.value });
-  }
-  handleOnChangePriority(event) {
-    this.setState({ priority: event.target.value })
-  }
-  handleOnChangeStatus(event) {
-    this.setState({ status: event.target.value })
-  }
-  handleOnChangeCreatedBy(event) {
-    this.setState({ created_by: event.target.value })
-  }
-  handleOnChangeAssignedTo(event) {
-    this.setState({ assigned_to: event.target.value })
+    });
   }
 
   render() {
-    return (
+    return(
       <div id="addCardForm">
-          <form onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" value={this.state.title} placeholder='title' onChange={this.handleOnChangeTitle} />
-          <input type="text" value={this.state.priority} placeholder='priority' onChange={this.handleOnChangePriority} />
-          <input type="text" value={this.state.status} placeholder='status' onChange={this.handleOnChangeStatus} />
-          <input type="text" value={this.state.created_by} placeholder='created by' onChange={this.handleOnChangeCreatedBy} />
-          <input type="text" value={this.state.assigned_to} placeholder='assigned to' onChange={this.handleOnChangeAssignedTo} />
-          <input type="submit" value="Submit Card" />
+        <form onSubmit={ this.handleSubmit.bind(this) }>
+          <input
+            className="addInput"
+            name="title"
+            placeholder="title"
+            onChange={ this.handleChange.bind(this) }
+            value={ this.state.title } />
+          <select
+            className="addInput"
+            name="priority"
+            defaultValue={ this.state.priority }
+            onChange={ this.handleChange.bind(this) }>
+            <option value="1">High</option>
+            <option value="2">Medium</option>
+            <option value="3">Low</option>
+            <option value="4">Blocker</option>
+          </select>
+          <input
+            className="addInput"
+            name="created_by"
+            placeholder="Created by..."
+            onChange={ this.handleChange.bind(this) }
+            value={ this.state.created_by} />
+          <input
+            className="addInput"
+            name="assigned_to"
+            placeholder="Assigned to..."
+            onChange={ this.handleChange.bind(this) }
+            value={ this.state.assigned_to } />
+          <input
+            type="submit"
+            value="Submit Task" />
         </form>
-       
       </div>
-    );
+    )
   }
 }
 
