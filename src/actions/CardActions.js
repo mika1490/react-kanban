@@ -38,3 +38,27 @@ export const addCard = newCard => {
   };
 };
 
+export const makeCardEditable = cardID => {  
+  return dispatch => {
+    return dispatch({
+      type : EDITING,
+      cardID : cardID
+    });
+  };
+};
+
+export const editCard = updatedCard => {
+  return dispatch => {
+    return axios.put(`${listOfCards}/${updatedCard.id}`, updatedCard)
+    .then(updatedCardDetails => {  
+      console.log('Hi',updatedCardDetails) 
+      // dispatch({
+      //   type : EDIT_CARD,
+      //   updatedCard : updatedCardDetails.data
+      // });   
+      dispatch(loadCards());
+    });
+  };
+};
+
+

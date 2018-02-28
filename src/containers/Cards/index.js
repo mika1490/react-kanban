@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadCards } from '../../actions/CardActions';
+import { loadCards, makeCardEditable, editCard, deleteCard } from '../../actions/CardActions';
 import ColumnComponent from '../../components/ColumnComponent';
 
 
@@ -19,7 +19,6 @@ class Cards extends Component {
     this.handleChange = this.handleChange.bind(this);
 
   }
-
 
   toggleEdit(card) {
     this.props.makeCardEditable(card.id);
@@ -54,7 +53,6 @@ class Cards extends Component {
     });
   }
   componentWillMount() {
-    console.log('FIRING', this.props)
     return this.props.loadCards();
   }
 
@@ -62,8 +60,7 @@ class Cards extends Component {
     return (
       <div id="columns-wrapper">
         <ColumnComponent
-          status_id="1"
-          status_name="in-queue"
+          status="1"
           cards={ this.props.cards }
           toggleEdit={ this.toggleEdit.bind(this) }
           editCard={ this.props.editCard }
@@ -72,8 +69,7 @@ class Cards extends Component {
           handleSubmit={ this.handleSubmit} />
 
         <ColumnComponent
-          status_id="2"
-          status_name="in-progress"
+          status="2"
           cards={ this.props.cards }
           toggleEdit={ this.toggleEdit.bind(this) }
           editCard={ this.props.editCard }
@@ -82,8 +78,7 @@ class Cards extends Component {
           handleSubmit={ this.handleSubmit} />
 
         <ColumnComponent
-          status_id="3"
-          status_name="done"
+          status="3"
           cards={ this.props.cards }
           toggleEdit={ this.toggleEdit.bind(this) }
           editCard={ this.props.editCard }
@@ -108,9 +103,21 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadCards: () => {
       dispatch(loadCards());
-    }
+    },
+    makeCardEditable : cardID => {
+      dispatch(makeCardEditable(cardID));
+    },
+
+    editCard : updatedCard => {
+      dispatch(editCard(updatedCard));
+    },
+    // deleteCard : cardID => {
+    //   dispatch(deleteCard(cardID));
+    // }
   }
-}
+
+  }
+
 
 export default connect(
   mapStateToProps,

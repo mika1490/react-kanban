@@ -8,7 +8,7 @@ export const CardListitem = (props) => {
   }
   return (
     <div className="card">
-    {
+    { !isEditing &&
       <div>
         <div> Title: { title } </div>
         <div> Priority: { priority }</div>
@@ -18,16 +18,17 @@ export const CardListitem = (props) => {
         <input type="submit" value="EDIT" onClick={ toggleEdit } />
         </div>
     }
-    
+    {isEditing &&
     <div>
     <form onSubmit={ (e) => handleSubmit(id, e) }>
-      {/* <div>
+      <div>
         <input
           className="addInput"
           name="title"
+          placeholder= "title"
           onChange={ handleChange }
           defaultValue={ title } />
-      </div> */}
+      </div>
       <div>
         <select
           className="addInput"
@@ -51,31 +52,30 @@ export const CardListitem = (props) => {
           <option value="3">Done</option>
         </select>            
       </div>
-      {/* <div>
+      <div>
         <input
           className="addInput"
           name="created_by"
+          placeholder="created by"
           onChange={ handleChange }
           defaultValue={ creator_id } />
-      </div> */}
+      </div>
       <div>
         <input
           className="addInput"
           name="assigned_to"
+          placeholder="assigned to"
           onChange={ handleChange }
           defaultValue={ dev_id } />
       </div>    
         <input type="submit"  value="UPDATE" />
       </form>
-      <button type="submit" onClick={ toggleEdit }>
-        UNDO
-      </button>
       <button type="submit" onClick={ removeCard }>DELETE
       </button>
     <div>
     </div>      
   </div>
-
+    }
 </div>
 )
 }

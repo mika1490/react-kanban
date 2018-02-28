@@ -1,13 +1,7 @@
-$bg-color: #FFFFFF;
+$bg-color: blue;
 $primary-color: #6699CC;
-$secondary-color: #FFFFFF;
-$accent-color: #FFFFFF;
-
-// breakpoints
-$sm-size: 400px;
-$sm-med: 600px;
-$med-lg: 960px;
-$lg-size: 1080px;
+$secondary-color:blue;
+$accent-color: blue;
 
 // mixins
 @mixin flex-style($flow, $justify) {
@@ -28,97 +22,29 @@ $lg-size: 1080px;
 }
 
 @mixin border-style() {
-  border: 1px solid black;
+  border: 1px solid pink;
 }
 
-/* STYLE SETTINGS  */
-
-html {
-  @include box-style(border-box); 
-}
-
-*, *:before, *:after {
-  @include box-style(inherit)
-}
-
-body {
-  margin: 0;
-  background-color: $bg-color;
-  font-family: sans-serif;
-  font-size: 20px;
-}
-
-#nav-bar {
-  @include flex-style(row nowrap, center);
-  width: 100%;
-
-  .nav-content {
-    @include flex-style(row nowrap, flex-start);
-    width: 45%;
-
-    .nav-item {
-      align-self: center;
-      font-weight: bold;
-    }
-
-    #brand {
-      font-size: 30px;
-    }
-
-    #new-card {
-      line-height: 36px;
-      font-size: 30px;
-    }
-
-    .options {
-      @include border-style();
-      margin: 10px;
-      width: 40px;
-      height: 40px;
-      line-height: 37px;
-      text-align: center;
-    }
-  }
-}
 
 #column-wrapper {
   @include flex-style(row wrap, center);
   align-items: flex-start;
   width: 100%;
 
-  .column-component {
+  #cards-list {
     @include border-style();
     margin: 5px;
  
-    .sub-header {
-      @include flex-style(row nowrap, space-between);
-      margin: 5px 10px 0px 10px;
-      padding: 5px;
-      font-weight: bold;
+  
 
-      div {
-        align-self: flex-end;
-      }
-
-      #sub-option {
-        font-size: 15px;
-      }
-    }
-
-    .card-item {
+    #card {
       @include border-style();
       margin: 0px 10px 10px 10px;
-      
-      .card-component {
+      color: pink;
+      font-family: 'sans-serif';
         width: 250px;
         margin: 10px;
       }      
     }
-  }
-}
-
-/* SPECIAL SETTINGS  */
-#nav-spacer {
-  visibility: hidden;
-  flex-grow: 1;
+  
 }
